@@ -1,0 +1,3 @@
+# Generate CodeCampus_Presentation_2026.pptx
+python-pptx>=0.6.23
+matplotlib>=3.8.0

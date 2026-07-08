@@ -1,0 +1,68 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Auth Service
+        - id: auth-service
+          uri: http://${AUTH_SERVICE_HOST:auth-service}:${AUTH_SERVICE_PORT:8081}
+          predicates:
+            - Path=/api/auth/**
+
+        # User Service
+        - id: user-service
+          uri: http://${USER_SERVICE_HOST:user-service}:${USER_SERVICE_PORT:8082}
+          predicates:
+            - Path=/api/profile/**,/api/admin/**,/api/batch-section/**
+
+        # Question Service
+        - id: question-service
+          uri: http://${QUESTION_SERVICE_HOST:question-service}:${QUESTION_SERVICE_PORT:8083}
+          predicates:
+            - Path=/api/questions/**,/api/studyplans/**
+
+        # Execution Service
+        - id: execution-service
+          uri: http://${EXECUTION_SERVICE_HOST:execution-service}:${EXECUTION_SERVICE_PORT:8085}
+          predicates:
+            - Path=/api/code/**
+
+        # Test Service
+        - id: test-service
+          uri: http://${TEST_SERVICE_HOST:test-service}:${TEST_SERVICE_PORT:8084}
+          predicates:
+            - Path=/api/tests/**,/api/mcq/**,/api/company/**
+
+        # Proctoring Service
+        - id: proctoring-service
+          uri: http://${PROCTORING_SERVICE_HOST:proctoring-service}:${PROCTORING_SERVICE_PORT:8086}
+          predicates:
+            - Path=/api/proctoring/**
+
+        # Integrity Service
+        - id: integrity-service
+          uri: http://${INTEGRITY_SERVICE_HOST:integrity-service}:${INTEGRITY_SERVICE_PORT:8087}
+          predicates:
+            - Path=/api/plagiarism/**
+
+        # Notification Service
+        - id: notification-service
+          uri: http://${NOTIFICATION_SERVICE_HOST:notification-service}:${NOTIFICATION_SERVICE_PORT:8088}
+          predicates:
+            - Path=/api/notifications/**,/api/feedback/**
+
+      # CORS configuration
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+
+jwt:
+  secret: ${JWT_SECRET:Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}

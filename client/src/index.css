@@ -1,0 +1,341 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== THEME TOKENS ===== */
+:root {
+  --accent:        #ffa116;
+  --accent-light:  #ffb84d;
+  --accent-bg:     rgba(255, 161, 22, 0.12);
+  --bg-primary:    #1a1a1a;
+  --bg-secondary:  #282828;
+  --bg-card:       #282828;
+  --bg-hover:      rgba(255,255,255,0.04);
+  --bg-input:      #282828;
+  --border-color:  rgba(255,255,255,0.08);
+  --border-subtle: #3e3e3e;
+  --text-primary:  #eff2f6;
+  --text-secondary:#a0a0a0;
+  --text-muted:    #6b6b6b;
+  --text-heading:  #ffffff;
+}
+
+/* Light mode – pure white + gray */
+html.light {
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f8fafc;
+  --bg-card:       #ffffff;
+  --bg-hover:      #f1f5f9;
+  --bg-input:      #f8fafc;
+  --border-color:  #e2e8f0;
+  --border-subtle: #e2e8f0;
+  --text-primary:  #111827;
+  --text-secondary:#4b5563;
+  --text-muted:    #9ca3af;
+  --text-heading:  #111827;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  transition-property: color, background-color, border-color, opacity !important;
+  transition-duration: 0.15s !important;
+  transition-timing-function: ease !important;
+}
+
+/* Disable expensive backdrop-filter */
+.backdrop-blur, .backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg, .backdrop-blur-xl {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html {
+  background: var(--bg-primary);
+  color-scheme: dark;
+  overscroll-behavior: none;
+}
+html.light { color-scheme: light; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+#root { min-height: 100vh; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #3e3e3e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
+html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+html.light .glass-card {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
+}
+
+/* Gradient accent text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffa116, #ffb84d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow { box-shadow: 0 0 20px rgba(255, 161, 22, 0.2); }
+
+.animated-bg { background: #1a1a1a; }
+html.light .animated-bg { background: #ffffff; }
+
+/* ===== BUTTONS ===== */
+@layer components {
+  .btn-primary   { @apply bg-orange-400 hover:bg-orange-500 text-white font-medium py-2.5 px-6 rounded-lg transition-all duration-200 active:scale-95; }
+  .btn-secondary { @apply bg-transparent hover:bg-white/5 text-slate-300 font-medium py-2.5 px-6 rounded-lg transition-all duration-200 border border-[#3e3e3e]; }
+  .btn-success   { @apply bg-orange-400 hover:bg-orange-500 text-white font-medium py-2.5 px-6 rounded-lg transition-all duration-200; }
+  .btn-danger    { @apply bg-[#2d2d2d] hover:bg-red-700 text-slate-300 hover:text-white font-medium py-2.5 px-6 rounded-lg transition-all duration-200; }
+
+  .input-field {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .input-field::placeholder { color: var(--text-muted); }
+  .input-field:focus { border-color: #ffa116; box-shadow: 0 0 0 3px rgba(255,161,22,0.15); }
+
+  .badge-easy   { @apply bg-teal-500/15   text-teal-400   border border-teal-500/30   px-3 py-1 rounded-full text-sm font-medium; }
+  .badge-medium { @apply bg-yellow-400/15 text-yellow-400 border border-yellow-400/30 px-3 py-1 rounded-full text-sm font-medium; }
+  .badge-hard   { @apply bg-red-500/15    text-red-400    border border-red-500/30    px-3 py-1 rounded-full text-sm font-medium; }
+}
+
+/* ===== HIDE SCROLLBAR ===== */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ===== ANIMATIONS ===== */
+.pulse-dot { width:8px;height:8px;background:#10b981;border-radius:50%;animation:pulse 2s infinite; }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(16,185,129,0.7)}70%{box-shadow:0 0 0 10px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)} }
+
+/* =========================================================
+   DARK MODE — Remap Tailwind slate blues → LeetCode neutral blacks
+   ========================================================= */
+
+/* ── Backgrounds ── */
+html:not(.light) .bg-slate-950          { background-color: #141414 !important; }
+html:not(.light) .bg-slate-900          { background-color: #1a1a1a !important; }
+html:not(.light) .bg-slate-900\/50      { background-color: rgba(26,26,26,0.5) !important; }
+html:not(.light) .bg-slate-900\/80      { background-color: rgba(26,26,26,0.8) !important; }
+html:not(.light) .bg-slate-800          { background-color: #282828 !important; }
+html:not(.light) .bg-slate-800\/10      { background-color: rgba(40,40,40,0.1) !important; }
+html:not(.light) .bg-slate-800\/20      { background-color: rgba(40,40,40,0.2) !important; }
+html:not(.light) .bg-slate-800\/30      { background-color: rgba(40,40,40,0.3) !important; }
+html:not(.light) .bg-slate-800\/40      { background-color: rgba(40,40,40,0.4) !important; }
+html:not(.light) .bg-slate-800\/50      { background-color: rgba(40,40,40,0.5) !important; }
+html:not(.light) .bg-slate-800\/60      { background-color: rgba(40,40,40,0.6) !important; }
+html:not(.light) .bg-slate-800\/80      { background-color: rgba(40,40,40,0.8) !important; }
+html:not(.light) .bg-slate-700          { background-color: #3e3e3e !important; }
+html:not(.light) .bg-slate-700\/50      { background-color: rgba(62,62,62,0.5) !important; }
+html:not(.light) .bg-slate-700\/30      { background-color: rgba(62,62,62,0.3) !important; }
+html:not(.light) .bg-slate-600          { background-color: #555555 !important; }
+
+/* ── Text ── */
+html:not(.light) .text-slate-100        { color: #eff2f6 !important; }
+html:not(.light) .text-slate-200        { color: #d0d0d0 !important; }
+html:not(.light) .text-slate-300        { color: #a0a0a0 !important; }
+html:not(.light) .text-slate-400        { color: #808080 !important; }
+html:not(.light) .text-slate-500        { color: #6b6b6b !important; }
+html:not(.light) .text-slate-600        { color: #555555 !important; }
+
+/* ── Borders ── */
+html:not(.light) .border-slate-800,
+html:not(.light) .border-slate-800\/50,
+html:not(.light) .border-slate-800\/40  { border-color: #3e3e3e !important; }
+html:not(.light) .border-slate-700,
+html:not(.light) .border-slate-700\/50  { border-color: #3e3e3e !important; }
+html:not(.light) .border-slate-600      { border-color: #4a4a4a !important; }
+
+/* ── Dividers ── */
+html:not(.light) .divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html:not(.light) .divide-slate-800\/50 > :not([hidden]) ~ :not([hidden]),
+html:not(.light) .divide-slate-800\/40 > :not([hidden]) ~ :not([hidden]) { border-color: #3e3e3e !important; }
+html:not(.light) .divide-slate-700 > :not([hidden]) ~ :not([hidden])     { border-color: #3e3e3e !important; }
+
+/* ── Hover states ── */
+html:not(.light) .hover\:bg-slate-800:hover      { background-color: #2d2d2d !important; }
+html:not(.light) .hover\:bg-slate-800\/30:hover  { background-color: rgba(45,45,45,0.6) !important; }
+html:not(.light) .hover\:bg-slate-800\/50:hover  { background-color: rgba(45,45,45,0.8) !important; }
+html:not(.light) .hover\:bg-slate-700:hover      { background-color: #3a3a3a !important; }
+html:not(.light) .hover\:bg-slate-700\/50:hover  { background-color: rgba(58,58,58,0.5) !important; }
+html:not(.light) .hover\:border-slate-600:hover  { border-color: #555 !important; }
+
+/* ── Ring / focus ── */
+html:not(.light) .ring-slate-700 { --tw-ring-color: #3e3e3e !important; }
+html:not(.light) .ring-slate-800 { --tw-ring-color: #282828 !important; }
+
+/* ── Accent: LeetCode orange ── */
+.text-orange-400, .text-orange-500 { color: #ffa116 !important; }
+.bg-orange-500, .bg-orange-600     { background-color: #ffa116 !important; }
+.bg-orange-400                     { background-color: #ffa116 !important; }
+.hover\:bg-orange-500:hover        { background-color: #e6901a !important; }
+.hover\:bg-orange-600:hover        { background-color: #cc8010 !important; }
+.border-orange-500\/30             { border-color: rgba(255,161,22,0.3) !important; }
+.text-orange-300                   { color: #ffb84d !important; }
+.bg-orange-500\/10                 { background: rgba(255,161,22,0.1) !important; }
+.bg-orange-500\/15                 { background: rgba(255,161,22,0.12) !important; }
+
+/* ── Easy / Medium / Hard (LeetCode palette) ── */
+.text-emerald-400, .text-emerald-300 { color: #00b8a3 !important; }
+.bg-emerald-500\/10                  { background: rgba(0,184,163,0.1) !important; }
+.bg-emerald-500\/15                  { background: rgba(0,184,163,0.12) !important; }
+.bg-emerald-500\/20                  { background: rgba(0,184,163,0.15) !important; }
+.border-emerald-500\/30              { border-color: rgba(0,184,163,0.3) !important; }
+
+.text-amber-400, .text-amber-500     { color: #ffc01e !important; }
+.bg-amber-500\/10                    { background: rgba(255,192,30,0.1) !important; }
+.bg-amber-500\/15                    { background: rgba(255,192,30,0.12) !important; }
+.border-amber-500\/30                { border-color: rgba(255,192,30,0.3) !important; }
+
+.text-teal-400, .text-teal-300       { color: #00b8a3 !important; }
+.bg-teal-500\/15                     { background: rgba(0,184,163,0.12) !important; }
+.border-teal-500\/30                 { border-color: rgba(0,184,163,0.3) !important; }
+
+.text-yellow-400                     { color: #ffc01e !important; }
+.bg-yellow-400\/15                   { background: rgba(255,192,30,0.12) !important; }
+.border-yellow-400\/30               { border-color: rgba(255,192,30,0.3) !important; }
+
+/* ── Badges (LeetCode style) ── */
+.badge-easy   { background: rgba(0,184,163,0.12) !important; color: #00b8a3 !important; border-color: rgba(0,184,163,0.3) !important; }
+.badge-medium { background: rgba(255,192,30,0.12) !important; color: #ffc01e !important; border-color: rgba(255,192,30,0.3) !important; }
+.badge-hard   { background: rgba(239,71,67,0.12)  !important; color: #ef4743 !important; border-color: rgba(239,71,67,0.3)  !important; }
+
+/* ── Input fields ── */
+html:not(.light) .bg-slate-900\/50.input-field,
+html:not(.light) .input-field { background: #282828 !important; border-color: #3e3e3e !important; }
+html.light .input-field { background: #f9fafb !important; border-color: #d1d5db !important; color: #111827 !important; }
+html.light .input-field::placeholder { color: #9ca3af !important; }
+
+/* ── Navbar ── */
+html:not(.light) nav { background-color: #1a1a1a !important; border-bottom-color: #3e3e3e !important; }
+/* ── Glass card (dark mode) ── */
+html:not(.light) .glass-card { background: #282828 !important; border-color: #3e3e3e !important; }
+
+/* =========================================================
+   LIGHT MODE OVERRIDES
+   All non-admin pages use hardcoded Tailwind dark classes.
+   These overrides flip them to clean white / gray.
+   ========================================================= */
+
+/* ── Backgrounds ── */
+html.light .bg-slate-950,
+html.light .bg-slate-900   { background-color: #ffffff !important; }
+html.light .bg-slate-900\/50 { background-color: rgba(248,250,252,0.6) !important; }
+html.light .bg-slate-900\/80 { background-color: rgba(255,255,255,0.95) !important; }
+html.light .bg-slate-800   { background-color: #f1f5f9 !important; }
+html.light .bg-slate-800\/10 { background-color: rgba(241,245,249,0.1) !important; }
+html.light .bg-slate-800\/20 { background-color: rgba(241,245,249,0.4) !important; }
+html.light .bg-slate-800\/30 { background-color: rgba(241,245,249,0.5) !important; }
+html.light .bg-slate-800\/40 { background-color: rgba(241,245,249,0.6) !important; }
+html.light .bg-slate-800\/50 { background-color: rgba(241,245,249,0.7) !important; }
+html.light .bg-slate-800\/80 { background-color: rgba(241,245,249,0.9) !important; }
+html.light .bg-slate-700   { background-color: #e2e8f0 !important; }
+html.light .bg-slate-700\/50 { background-color: rgba(226,232,240,0.5) !important; }
+
+/* ── Text ── */
+html.light .text-white     { color: #111827 !important; }
+html.light .text-slate-100 { color: #1f2937 !important; }
+html.light .text-slate-200 { color: #1f2937 !important; }
+html.light .text-slate-300 { color: #374151 !important; }
+html.light .text-slate-400 { color: #6b7280 !important; }
+html.light .text-slate-500 { color: #9ca3af !important; }
+html.light .text-slate-600 { color: #6b7280 !important; }
+
+/* ── Borders ── */
+html.light .border-slate-800,
+html.light .border-slate-800\/50,
+html.light .border-slate-800\/40 { border-color: #e2e8f0 !important; }
+html.light .border-slate-700,
+html.light .border-slate-700\/50 { border-color: #e2e8f0 !important; }
+html.light .border-slate-600     { border-color: #d1d5db !important; }
+
+/* ── Dividers ── */
+html.light .divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+html.light .divide-slate-800\/50 > :not([hidden]) ~ :not([hidden]),
+html.light .divide-slate-800\/40 > :not([hidden]) ~ :not([hidden]) { border-color: #e2e8f0 !important; }
+
+/* ── Hover states ── */
+html.light .hover\:bg-slate-800:hover     { background-color: #f1f5f9 !important; }
+html.light .hover\:bg-slate-800\/30:hover { background-color: rgba(241,245,249,0.6) !important; }
+html.light .hover\:bg-slate-800\/50:hover { background-color: rgba(241,245,249,0.8) !important; }
+html.light .hover\:text-white:hover       { color: #111827 !important; }
+
+/* ── Accent colors (keep but slightly adjust for light bg) ── */
+html.light .text-emerald-400 { color: #059669 !important; }
+html.light .text-emerald-300 { color: #059669 !important; }
+html.light .text-amber-400   { color: #d97706 !important; }
+html.light .text-amber-500   { color: #b45309 !important; }
+html.light .text-red-400     { color: #dc2626 !important; }
+html.light .text-indigo-400  { color: #4f46e5 !important; }
+html.light .text-blue-400    { color: #2563eb !important; }
+html.light .text-purple-400  { color: #7c3aed !important; }
+html.light .text-cyan-400    { color: #0891b2 !important; }
+html.light .text-cyan-300    { color: #0e7490 !important; }
+
+/* ── Opacity-color backgrounds ── */
+html.light .bg-emerald-500\/10  { background: rgba(16,185,129,0.1) !important; }
+html.light .bg-emerald-500\/15  { background: rgba(16,185,129,0.12) !important; }
+html.light .bg-emerald-500\/20  { background: rgba(16,185,129,0.15) !important; }
+html.light .bg-amber-500\/10    { background: rgba(245,158,11,0.1) !important; }
+html.light .bg-amber-500\/15    { background: rgba(245,158,11,0.12) !important; }
+html.light .bg-red-500\/10      { background: rgba(239,68,68,0.1) !important; }
+html.light .bg-red-500\/15      { background: rgba(239,68,68,0.12) !important; }
+html.light .bg-red-500\/20      { background: rgba(239,68,68,0.15) !important; }
+html.light .bg-indigo-500\/10   { background: rgba(99,102,241,0.08) !important; }
+html.light .bg-indigo-500\/15   { background: rgba(99,102,241,0.1) !important; }
+html.light .bg-indigo-500\/20   { background: rgba(99,102,241,0.12) !important; }
+
+/* ── Badges ── */
+html.light .badge-easy   { background: rgba(16,185,129,0.12) !important; color: #059669 !important; border-color: rgba(16,185,129,0.25) !important; }
+html.light .badge-medium { background: rgba(245,158,11,0.12) !important; color: #d97706 !important; border-color: rgba(245,158,11,0.25) !important; }
+html.light .badge-hard   { background: rgba(239,68,68,0.12)  !important; color: #dc2626 !important; border-color: rgba(239,68,68,0.25)  !important; }
+
+/* ── Buttons ── */
+html.light .btn-secondary         { background: #ffffff !important; color: #374151 !important; border-color: #d1d5db !important; }
+html.light .btn-secondary:hover   { background: #f9fafb !important; }
+
+/* ── Code / mono ── */
+html.light pre, html.light .font-mono { color: #374151 !important; }
+
+/* ── Navbar (non-admin) ── */
+html.light nav {
+  background-color: #ffffff !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* ── Gradient text stays orange ── */
+html.light .gradient-text {
+  background: linear-gradient(135deg, #ea580c, #f97316) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ── Badges light mode ── */
+html.light .badge-easy   { background: rgba(0,184,163,0.1)  !important; color: #007d74 !important; border-color: rgba(0,184,163,0.25) !important; }
+html.light .badge-medium { background: rgba(255,192,30,0.1)  !important; color: #b8860b !important; border-color: rgba(255,192,30,0.25) !important; }
+html.light .badge-hard   { background: rgba(239,71,67,0.1)   !important; color: #cc2200 !important; border-color: rgba(239,71,67,0.25) !important; }

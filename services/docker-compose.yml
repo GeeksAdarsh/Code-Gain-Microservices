@@ -1,0 +1,404 @@
+﻿services:
+
+  # â”€â”€ Message Broker â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    networks: [codecampus]
+
+  # â”€â”€ Databases â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  auth-db:
+    image: mysql:8.0
+    container_name: auth-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: auth_db
+    volumes:
+      - auth-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  user-db:
+    image: mysql:8.0
+    container_name: user-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: user_db
+    volumes:
+      - user-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  question-db:
+    image: mysql:8.0
+    container_name: question-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: question_db
+    volumes:
+      - question-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  test-db:
+    image: mysql:8.0
+    container_name: test-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: test_db
+    volumes:
+      - test-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  execution-db:
+    image: mysql:8.0
+    container_name: execution-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: execution_db
+    volumes:
+      - execution-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  proctoring-db:
+    image: mysql:8.0
+    container_name: proctoring-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: proctoring_db
+    volumes:
+      - proctoring-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  integrity-db:
+    image: mysql:8.0
+    container_name: integrity-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: integrity_db
+    volumes:
+      - integrity-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  notification-db:
+    image: mysql:8.0
+    container_name: notification-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: notification_db
+    volumes:
+      - notification-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [codecampus]
+
+  # â”€â”€ Microservices â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  auth-service:
+    build:
+      context: .
+      dockerfile: auth-service/Dockerfile
+    container_name: auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      PORT: 8081
+      DB_URL: jdbc:mysql://auth-db:3306/auth_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@codegaint.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+    depends_on:
+      auth-db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  user-service:
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+    container_name: user-service
+    ports:
+      - "8082:8082"
+    environment:
+      PORT: 8082
+      DB_URL: jdbc:mysql://user-db:3306/user_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+    depends_on:
+      user-db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  question-service:
+    build:
+      context: .
+      dockerfile: question-service/Dockerfile
+    container_name: question-service
+    ports:
+      - "8083:8083"
+    environment:
+      PORT: 8083
+      DB_URL: jdbc:mysql://question-db:3306/question_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+    depends_on:
+      question-db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  test-service:
+    build:
+      context: .
+      dockerfile: test-service/Dockerfile
+    container_name: test-service
+    ports:
+      - "8084:8084"
+    environment:
+      PORT: 8084
+      DB_URL: jdbc:mysql://test-db:3306/test_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-guest}
+      EXECUTION_SERVICE_URL: http://execution-service:8085
+      QUESTION_SERVICE_URL: http://question-service:8083
+    depends_on:
+      test-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  execution-service:
+    build:
+      context: .
+      dockerfile: execution-service/Dockerfile
+    container_name: execution-service
+    ports:
+      - "8085:8085"
+    environment:
+      PORT: 8085
+      DB_URL: jdbc:mysql://execution-db:3306/execution_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-guest}
+      QUESTION_SERVICE_URL: http://question-service:8083
+      EXEC_MAX_CONCURRENT: ${EXEC_MAX_CONCURRENT:-12}
+      EXEC_QUEUE_TIMEOUT: ${EXEC_QUEUE_TIMEOUT:-60}
+    depends_on:
+      execution-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  proctoring-service:
+    build:
+      context: .
+      dockerfile: proctoring-service/Dockerfile
+    container_name: proctoring-service
+    ports:
+      - "8086:8086"
+    environment:
+      PORT: 8086
+      DB_URL: jdbc:mysql://proctoring-db:3306/proctoring_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-guest}
+      TEST_SERVICE_URL: http://test-service:8084
+      PROCTOR_SNAPSHOT_INTERVAL: ${PROCTOR_SNAPSHOT_INTERVAL:-300}
+    depends_on:
+      proctoring-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  integrity-service:
+    build:
+      context: .
+      dockerfile: integrity-service/Dockerfile
+    container_name: integrity-service
+    ports:
+      - "8087:8087"
+    environment:
+      PORT: 8087
+      DB_URL: jdbc:mysql://integrity-db:3306/integrity_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-guest}
+      QUESTION_SERVICE_URL: http://question-service:8083
+      EXECUTION_SERVICE_URL: http://execution-service:8085
+    depends_on:
+      integrity-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: notification-service/Dockerfile
+    container_name: notification-service
+    ports:
+      - "8088:8088"
+    environment:
+      PORT: 8088
+      DB_URL: jdbc:mysql://notification-db:3306/notification_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-guest}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-guest}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      USER_SERVICE_URL: http://user-service:8082
+    depends_on:
+      notification-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [codecampus]
+
+  # â”€â”€ API Gateway â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      AUTH_SERVICE_HOST: auth-service
+      AUTH_SERVICE_PORT: 8081
+      USER_SERVICE_HOST: user-service
+      USER_SERVICE_PORT: 8082
+      QUESTION_SERVICE_HOST: question-service
+      QUESTION_SERVICE_PORT: 8083
+      TEST_SERVICE_HOST: test-service
+      TEST_SERVICE_PORT: 8084
+      EXECUTION_SERVICE_HOST: execution-service
+      EXECUTION_SERVICE_PORT: 8085
+      PROCTORING_SERVICE_HOST: proctoring-service
+      PROCTORING_SERVICE_PORT: 8086
+      INTEGRITY_SERVICE_HOST: integrity-service
+      INTEGRITY_SERVICE_PORT: 8087
+      NOTIFICATION_SERVICE_HOST: notification-service
+      NOTIFICATION_SERVICE_PORT: 8088
+    depends_on:
+      - auth-service
+      - user-service
+      - question-service
+      - test-service
+      - execution-service
+      - proctoring-service
+      - integrity-service
+      - notification-service
+    restart: unless-stopped
+    networks: [codecampus]
+
+  # â”€â”€ React Frontend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  web:
+    build:
+      context: ../client
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ""
+    container_name: web
+    ports:
+      - "80:80"
+    depends_on:
+      - api-gateway
+    restart: unless-stopped
+    networks: [codecampus]
+
+networks:
+  codecampus:
+    driver: bridge
+
+volumes:
+  auth-db-data:
+  user-db-data:
+  question-db-data:
+  test-db-data:
+  execution-db-data:
+  proctoring-db-data:
+  integrity-db-data:
+  notification-db-data:

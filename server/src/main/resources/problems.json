@@ -1,0 +1,779 @@
+[
+  {
+    "title": "Two Sum",
+    "desc": "Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nExample:\nInput: nums = [2,7,11,15], target = 9\nOutput: 0 1\nExplanation: nums[0] + nums[1] = 2 + 7 = 9\n\nApproach: Use a Hash Map to store (value → index). For each element, check if (target - nums[i]) exists in the map.",
+    "inFmt": "First line: N (array size) and target\nSecond line: N space-separated integers",
+    "outFmt": "Two 0-based indices separated by space (smaller first)",
+    "constraints": "2 <= N <= 10^4\n-10^9 <= nums[i] <= 10^9\nExactly one solution exists",
+    "diff": "EASY",
+    "tags": [
+      "Array",
+      "Hash Map"
+    ],
+    "sIn": "4 9\n2 7 11 15",
+    "sOut": "0 1",
+    "explain": "nums[0]+nums[1] = 2+7 = 9. Use HashMap for O(n) solution.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "4 9\n2 7 11 15",
+        "out": "0 1",
+        "sample": true
+      },
+      {
+        "in": "3 6\n3 2 4",
+        "out": "1 2",
+        "sample": true
+      },
+      {
+        "in": "2 6\n3 3",
+        "out": "0 1"
+      },
+      {
+        "in": "5 -1\n-3 4 2 -1 90",
+        "out": "0 2"
+      },
+      {
+        "in": "4 8\n1 2 3 5",
+        "out": "2 3"
+      },
+      {
+        "in": "6 0\n-1 -2 -3 3 2 1",
+        "out": "2 3"
+      },
+      {
+        "in": "3 4\n0 4 0",
+        "out": "0 1"
+      },
+      {
+        "in": "7 9\n1 1 1 1 1 4 5",
+        "out": "5 6"
+      },
+      {
+        "in": "5 10\n5 5 3 7 2",
+        "out": "0 1"
+      },
+      {
+        "in": "4 14\n2 4 6 8",
+        "out": "2 3"
+      }
+    ]
+  },
+  {
+    "title": "Best Time to Buy and Sell Stock",
+    "desc": "You are given an array `prices` where prices[i] is the price on the i-th day.\n\nMaximize profit by choosing a single day to buy and a different day in the future to sell. Return max profit, or 0 if no profit possible.\n\nExample:\nInput: [7,1,5,3,6,4]\nOutput: 5 (Buy at 1, sell at 6)\n\nApproach: Track minimum price so far, compute profit at each step.",
+    "inFmt": "First line: N\nSecond line: N prices",
+    "outFmt": "Maximum profit (0 if none)",
+    "constraints": "1 <= N <= 10^5\n0 <= prices[i] <= 10^4",
+    "diff": "EASY",
+    "tags": [
+      "Array",
+      "DP"
+    ],
+    "sIn": "6\n7 1 5 3 6 4",
+    "sOut": "5",
+    "explain": "Buy at price 1 (day 2), sell at price 6 (day 5). Profit = 5.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "6\n7 1 5 3 6 4",
+        "out": "5",
+        "sample": true
+      },
+      {
+        "in": "5\n7 6 4 3 1",
+        "out": "0",
+        "sample": true
+      },
+      {
+        "in": "1\n5",
+        "out": "0"
+      },
+      {
+        "in": "2\n1 2",
+        "out": "1"
+      },
+      {
+        "in": "2\n2 1",
+        "out": "0"
+      },
+      {
+        "in": "5\n1 2 3 4 5",
+        "out": "4"
+      },
+      {
+        "in": "6\n2 4 1 7 5 3",
+        "out": "6"
+      },
+      {
+        "in": "4\n3 3 3 3",
+        "out": "0"
+      },
+      {
+        "in": "8\n3 1 4 1 5 9 2 6",
+        "out": "8"
+      },
+      {
+        "in": "5\n10 8 2 9 1",
+        "out": "7"
+      }
+    ]
+  },
+  {
+    "title": "Contains Duplicate",
+    "desc": "Given an integer array `nums`, return `true` if any value appears at least twice, and `false` if every element is distinct.\n\nExample 1: [1,2,3,1] → true (1 appears twice)\nExample 2: [1,2,3,4] → false\n\nApproach: Use a HashSet. Add each element — if it already exists, return true.",
+    "inFmt": "First line: N\nSecond line: N integers",
+    "outFmt": "true or false",
+    "constraints": "1 <= N <= 10^5\n-10^9 <= nums[i] <= 10^9",
+    "diff": "EASY",
+    "tags": [
+      "Array",
+      "Hash Map"
+    ],
+    "sIn": "4\n1 2 3 1",
+    "sOut": "true",
+    "explain": "1 appears at index 0 and 3. HashSet approach: O(n) time.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "4\n1 2 3 1",
+        "out": "true",
+        "sample": true
+      },
+      {
+        "in": "4\n1 2 3 4",
+        "out": "false",
+        "sample": true
+      },
+      {
+        "in": "1\n1",
+        "out": "false"
+      },
+      {
+        "in": "2\n1 1",
+        "out": "true"
+      },
+      {
+        "in": "5\n1 2 3 4 5",
+        "out": "false"
+      },
+      {
+        "in": "6\n1 2 3 4 5 1",
+        "out": "true"
+      },
+      {
+        "in": "3\n0 0 0",
+        "out": "true"
+      },
+      {
+        "in": "5\n-1 -2 -3 -1 0",
+        "out": "true"
+      }
+    ]
+  },
+  {
+    "title": "Maximum Subarray",
+    "desc": "Given an integer array `nums`, find the subarray with the largest sum and return its sum.\n\nExample: [-2,1,-3,4,-1,2,1,-5,4] → 6 (subarray [4,-1,2,1])\n\nApproach (Kadane's Algorithm):\ncurrentSum = max(nums[i], currentSum + nums[i])\nmaxSum = max(maxSum, currentSum)\n\nTime: O(n), Space: O(1)",
+    "inFmt": "First line: N\nSecond line: N integers",
+    "outFmt": "Maximum subarray sum",
+    "constraints": "1 <= N <= 10^5\n-10^4 <= nums[i] <= 10^4",
+    "diff": "MEDIUM",
+    "tags": [
+      "Array",
+      "DP"
+    ],
+    "sIn": "9\n-2 1 -3 4 -1 2 1 -5 4",
+    "sOut": "6",
+    "explain": "Subarray [4,-1,2,1] has sum 6. Kadane's algorithm tracks running max.",
+    "tl": 2,
+    "tc": [
+      {
+        "in": "9\n-2 1 -3 4 -1 2 1 -5 4",
+        "out": "6",
+        "sample": true
+      },
+      {
+        "in": "1\n1",
+        "out": "1",
+        "sample": true
+      },
+      {
+        "in": "5\n5 4 -1 7 8",
+        "out": "23"
+      },
+      {
+        "in": "1\n-1",
+        "out": "-1"
+      },
+      {
+        "in": "3\n-2 -1 -3",
+        "out": "-1"
+      },
+      {
+        "in": "5\n1 2 3 4 5",
+        "out": "15"
+      },
+      {
+        "in": "6\n-1 2 3 -4 5 -6",
+        "out": "6"
+      },
+      {
+        "in": "4\n-2 1 -3 4",
+        "out": "4"
+      },
+      {
+        "in": "7\n1 -1 1 -1 1 -1 1",
+        "out": "1"
+      },
+      {
+        "in": "5\n-1 -2 3 4 -5",
+        "out": "7"
+      }
+    ]
+  },
+  {
+    "title": "Move Zeroes",
+    "desc": "Given an integer array `nums`, find the sum of all elements in the array.\n\nReturn the total sum of all integers in the array. The array may contain both positive and negative numbers.\n\nExample:\nInput: nums = [1, 2, 3, 4]\nOutput: 10\nExplanation: 1 + 2 + 3 + 4 = 10",
+    "inFmt": "First line: N (size of array)\nSecond line: N space-separated integers",
+    "outFmt": "A single integer — the sum of all elements",
+    "constraints": "1 <= N <= 50\n-100 <= nums[i] <= 100",
+    "diff": "EASY",
+    "tags": [
+      "Array",
+      "Two Pointers"
+    ],
+    "sIn": "4\n1 2 3 4",
+    "sOut": "10",
+    "explain": "Sum all elements: 1 + 2 + 3 + 4 = 10. Iterate through the array and accumulate the sum.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "1\n-79",
+        "out": "-79",
+        "sample": true
+      },
+      {
+        "in": "4\n100 -53 -78 62",
+        "out": "31",
+        "sample": true
+      },
+      {
+        "in": "4\n100 -53 -78 62",
+        "out": "31"
+      },
+      {
+        "in": "7\n-98 -82 -52 -95 -94 55 -5",
+        "out": "-371"
+      },
+      {
+        "in": "10\n48 15 -42 -85 48 -35 -31 40 -86 47",
+        "out": "-81"
+      },
+      {
+        "in": "13\n-43 97 0 -30 -82 20 -4 64 53 -82 51 95 -42",
+        "out": "97"
+      },
+      {
+        "in": "16\n69 57 20 -18 -81 56 36 -78 -1 41 38 93 -66 95 99 36",
+        "out": "396"
+      },
+      {
+        "in": "19\n-66 16 85 -60 -64 47 79 100 -42 59 79 -71 27 -14 62 47 -93 -48 47",
+        "out": "190"
+      },
+      {
+        "in": "22\n-52 -10 53 9 7 3 49 -51 -42 -60 14 -73 -54 -24 -56 36 28 -31 -13 -42 -5 22",
+        "out": "-292"
+      },
+      {
+        "in": "25\n44 24 27 80 -3 98 -62 40 46 -18 -15 16 -30 50 28 22 53 -95 48 -33 -68 74 18 -24 -11",
+        "out": "309"
+      },
+      {
+        "in": "28\n69 -82 74 70 -95 -49 25 2 27 -7 -73 -30 -85 48 31 -62 -20 -85 -20 -9 -24 -4 -87 14 0 -51 -4 -81",
+        "out": "-508"
+      },
+      {
+        "in": "31\n71 -31 -48 52 79 72 -27 -21 -33 79 -9 14 -13 -26 -25 -61 -65 31 -58 23 64 88 77 -50 7 -22 9 59 -99 47 -19",
+        "out": "165"
+      },
+      {
+        "in": "34\n-29 41 -64 -65 -41 -1 -40 -50 -73 -9 -62 38 -80 47 -47 19 8 3 40 -46 -96 16 49 -84 -75 -40 -13 62 2 50 -82 33 -78 -53",
+        "out": "-720"
+      },
+      {
+        "in": "37\n45 -38 16 -36 -100 3 86 -87 82 -12 -67 -22 -79 -73 -48 -52 5 21 44 54 -39 35 68 -4 57 -42 60 -7 -41 61 99 89 -48 39 -74 -51 -14",
+        "out": "-70"
+      },
+      {
+        "in": "40\n-15 46 29 -96 -31 -16 88 -20 -9 87 -4 -80 -90 -22 -33 84 -22 22 -31 45 17 -12 66 19 -86 -82 72 39 65 46 -61 -67 -75 17 -54 -52 61 34 -90 19",
+        "out": "-192"
+      },
+      {
+        "in": "43\n33 68 -30 31 -12 61 -40 -38 -53 58 55 98 16 -53 -43 78 -67 -19 15 10 -16 91 -80 -79 -26 51 66 -29 95 -54 66 -43 61 -73 11 48 -93 -56 86 31 99 26 32",
+        "out": "382"
+      }
+    ]
+  },
+  {
+    "title": "Single Number",
+    "desc": "Every element appears twice except one. Find the single one in O(1) space.\n\nKey Insight — XOR: a⊕a=0, a⊕0=a. XOR all elements, pairs cancel out!\n\nExample: [2,2,1] → 2⊕2⊕1 = 0⊕1 = 1",
+    "inFmt": "First line: N\nSecond line: N integers",
+    "outFmt": "The element appearing once",
+    "constraints": "1 <= N <= 3*10^4\nEach element appears twice except one",
+    "diff": "EASY",
+    "tags": [
+      "Array",
+      "Bit Manipulation"
+    ],
+    "sIn": "5\n2 2 1 3 3",
+    "sOut": "1",
+    "explain": "XOR: 2⊕2⊕1⊕3⊕3 = 0⊕1⊕0 = 1",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "5\n2 2 1 3 3",
+        "out": "1",
+        "sample": true
+      },
+      {
+        "in": "3\n4 1 2 1 2",
+        "out": "4",
+        "sample": true
+      },
+      {
+        "in": "1\n1",
+        "out": "1"
+      },
+      {
+        "in": "3\n-1 -1 -2",
+        "out": "-2"
+      },
+      {
+        "in": "7\n1 1 2 2 3 3 99",
+        "out": "99"
+      },
+      {
+        "in": "3\n0 1 0",
+        "out": "1"
+      },
+      {
+        "in": "5\n100 200 100 300 200",
+        "out": "300"
+      },
+      {
+        "in": "9\n5 3 5 3 7 7 8 8 42",
+        "out": "42"
+      }
+    ]
+  },
+  {
+    "title": "Reverse String",
+    "desc": "Write a function that reverses a string in-place using O(1) extra memory.\n\nExample: \"hello\" → \"olleh\"\n\nApproach: Two pointers — swap s[left] and s[right], move inward.",
+    "inFmt": "A single string",
+    "outFmt": "Reversed string",
+    "constraints": "1 <= s.length <= 10^5",
+    "diff": "EASY",
+    "tags": [
+      "String",
+      "Two Pointers"
+    ],
+    "sIn": "hello",
+    "sOut": "olleh",
+    "explain": "Swap characters from both ends toward center.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "hello",
+        "out": "olleh",
+        "sample": true
+      },
+      {
+        "in": "a",
+        "out": "a"
+      },
+      {
+        "in": "ab",
+        "out": "ba"
+      },
+      {
+        "in": "racecar",
+        "out": "racecar"
+      },
+      {
+        "in": "12345",
+        "out": "54321"
+      },
+      {
+        "in": "CodeCampus",
+        "out": "supmaCedoC"
+      },
+      {
+        "in": "abcdef",
+        "out": "fedcba"
+      },
+      {
+        "in": "A man",
+        "out": "nam A"
+      }
+    ]
+  },
+  {
+    "title": "Valid Parentheses",
+    "desc": "Given a string containing '(', ')', '{', '}', '[', ']', determine if the input string is valid.\n\nRules:\n1. Open brackets closed by same type\n2. Open brackets closed in correct order\n\nExample: \"()[]{}\" → true, \"(]\" → false\n\nApproach: Use a Stack. Push opening brackets, pop on closing and check match.",
+    "inFmt": "A single string of brackets",
+    "outFmt": "true or false",
+    "constraints": "1 <= s.length <= 10^4",
+    "diff": "EASY",
+    "tags": [
+      "String",
+      "Stack"
+    ],
+    "sIn": "()[]{}",
+    "sOut": "true",
+    "explain": "Stack-based: push '(' on '(', pop and compare when ')' is seen.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "()[]{}",
+        "out": "true",
+        "sample": true
+      },
+      {
+        "in": "(]",
+        "out": "false",
+        "sample": true
+      },
+      {
+        "in": "([)]",
+        "out": "false"
+      },
+      {
+        "in": "{[]}",
+        "out": "true"
+      },
+      {
+        "in": "(",
+        "out": "false"
+      },
+      {
+        "in": ")",
+        "out": "false"
+      },
+      {
+        "in": "((()))",
+        "out": "true"
+      },
+      {
+        "in": "({[()]}))",
+        "out": "false"
+      },
+      {
+        "in": "{[()]}",
+        "out": "true"
+      },
+      {
+        "in": "",
+        "out": "true"
+      }
+    ]
+  },
+  {
+    "title": "Palindrome Number",
+    "desc": "Given an integer x, return true if x is a palindrome (reads same forward and backward).\n\nExamples: 121 → true, -121 → false, 10 → false\n\nApproach: Reverse half the digits, compare with first half. Negatives are never palindromes.",
+    "inFmt": "A single integer",
+    "outFmt": "true or false",
+    "constraints": "-2^31 <= x <= 2^31 - 1",
+    "diff": "EASY",
+    "tags": [
+      "String",
+      "Math"
+    ],
+    "sIn": "121",
+    "sOut": "true",
+    "explain": "121 reads same forwards and backwards. -121 reads as 121- backwards, so false.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "121",
+        "out": "true",
+        "sample": true
+      },
+      {
+        "in": "-121",
+        "out": "false",
+        "sample": true
+      },
+      {
+        "in": "10",
+        "out": "false"
+      },
+      {
+        "in": "0",
+        "out": "true"
+      },
+      {
+        "in": "12321",
+        "out": "true"
+      },
+      {
+        "in": "11",
+        "out": "true"
+      },
+      {
+        "in": "1",
+        "out": "true"
+      },
+      {
+        "in": "1001",
+        "out": "true"
+      },
+      {
+        "in": "1000021",
+        "out": "false"
+      },
+      {
+        "in": "12344321",
+        "out": "true"
+      }
+    ]
+  },
+  {
+    "title": "Climbing Stairs",
+    "desc": "You are climbing a staircase with `n` steps. Each time you can climb 1 or 2 steps. How many distinct ways can you reach the top?\n\nThis is the Fibonacci sequence! ways(n) = ways(n-1) + ways(n-2)\n\nExample: n=3 → 3 ways: {1+1+1}, {1+2}, {2+1}\n\nApproach: Bottom-up DP with two variables. O(n) time, O(1) space.",
+    "inFmt": "A single integer n",
+    "outFmt": "Number of distinct ways",
+    "constraints": "1 <= n <= 45",
+    "diff": "EASY",
+    "tags": [
+      "DP",
+      "Math"
+    ],
+    "sIn": "3",
+    "sOut": "3",
+    "explain": "f(1)=1, f(2)=2, f(3)=3, f(4)=5, f(5)=8 — Fibonacci pattern.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "3",
+        "out": "3",
+        "sample": true
+      },
+      {
+        "in": "2",
+        "out": "2",
+        "sample": true
+      },
+      {
+        "in": "1",
+        "out": "1"
+      },
+      {
+        "in": "5",
+        "out": "8"
+      },
+      {
+        "in": "10",
+        "out": "89"
+      },
+      {
+        "in": "20",
+        "out": "10946"
+      },
+      {
+        "in": "30",
+        "out": "1346269"
+      },
+      {
+        "in": "45",
+        "out": "1836311903"
+      },
+      {
+        "in": "4",
+        "out": "5"
+      },
+      {
+        "in": "15",
+        "out": "987"
+      }
+    ]
+  },
+  {
+    "title": "Fibonacci Number",
+    "desc": "Calculate F(n) where Fibonacci sequence is: F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2)\n\nSequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...\n\nApproach: Bottom-up with two variables. O(n) time, O(1) space.",
+    "inFmt": "A single integer n (0-indexed)",
+    "outFmt": "F(n)",
+    "constraints": "0 <= n <= 30",
+    "diff": "EASY",
+    "tags": [
+      "DP",
+      "Math"
+    ],
+    "sIn": "6",
+    "sOut": "8",
+    "explain": "F(6) = 8. Sequence: 0,1,1,2,3,5,8",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "6",
+        "out": "8",
+        "sample": true
+      },
+      {
+        "in": "0",
+        "out": "0",
+        "sample": true
+      },
+      {
+        "in": "1",
+        "out": "1"
+      },
+      {
+        "in": "2",
+        "out": "1"
+      },
+      {
+        "in": "10",
+        "out": "55"
+      },
+      {
+        "in": "20",
+        "out": "6765"
+      },
+      {
+        "in": "30",
+        "out": "832040"
+      },
+      {
+        "in": "5",
+        "out": "5"
+      },
+      {
+        "in": "15",
+        "out": "610"
+      },
+      {
+        "in": "25",
+        "out": "75025"
+      }
+    ]
+  },
+  {
+    "title": "Binary Search",
+    "desc": "Given a sorted array and target, return index if found, else -1. Must be O(log n).\n\nAlgorithm: left=0, right=n-1. While left<=right: mid=(left+right)/2. If nums[mid]==target return mid. If nums[mid]<target: left=mid+1. Else: right=mid-1.",
+    "inFmt": "First line: N and target\nSecond line: N sorted integers",
+    "outFmt": "Index of target, or -1",
+    "constraints": "1 <= N <= 10^4\nAll integers unique, sorted ascending",
+    "diff": "EASY",
+    "tags": [
+      "Binary Search"
+    ],
+    "sIn": "6 9\n-1 0 3 5 9 12",
+    "sOut": "4",
+    "explain": "9 is at index 4. Binary search halves the search space each step.",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "6 9\n-1 0 3 5 9 12",
+        "out": "4",
+        "sample": true
+      },
+      {
+        "in": "6 2\n-1 0 3 5 9 12",
+        "out": "-1",
+        "sample": true
+      },
+      {
+        "in": "1 5\n5",
+        "out": "0"
+      },
+      {
+        "in": "1 1\n5",
+        "out": "-1"
+      },
+      {
+        "in": "5 1\n1 2 3 4 5",
+        "out": "0"
+      },
+      {
+        "in": "5 5\n1 2 3 4 5",
+        "out": "4"
+      },
+      {
+        "in": "5 3\n1 2 3 4 5",
+        "out": "2"
+      },
+      {
+        "in": "3 -1\n-5 -1 3",
+        "out": "1"
+      },
+      {
+        "in": "10 7\n1 2 3 4 5 6 7 8 9 10",
+        "out": "6"
+      },
+      {
+        "in": "2 2\n1 3",
+        "out": "-1"
+      }
+    ]
+  },
+  {
+    "title": "GCD of Two Numbers",
+    "desc": "Find the Greatest Common Divisor using Euclidean Algorithm.\n\ngcd(a,b) = gcd(b, a%b), base: gcd(a,0) = a\n\nExample: gcd(12,8) = gcd(8,4) = gcd(4,0) = 4",
+    "inFmt": "Two integers a and b",
+    "outFmt": "GCD",
+    "constraints": "0 <= a,b <= 10^9",
+    "diff": "EASY",
+    "tags": [
+      "Math"
+    ],
+    "sIn": "12 8",
+    "sOut": "4",
+    "explain": "gcd(12,8)→gcd(8,4)→gcd(4,0)=4",
+    "tl": 1,
+    "tc": [
+      {
+        "in": "12 8",
+        "out": "4",
+        "sample": true
+      },
+      {
+        "in": "100 75",
+        "out": "25",
+        "sample": true
+      },
+      {
+        "in": "7 13",
+        "out": "1"
+      },
+      {
+        "in": "0 5",
+        "out": "5"
+      },
+      {
+        "in": "48 36",
+        "out": "12"
+      },
+      {
+        "in": "17 17",
+        "out": "17"
+      },
+      {
+        "in": "1 1",
+        "out": "1"
+      },
+      {
+        "in": "100 0",
+        "out": "100"
+      },
+      {
+        "in": "270 192",
+        "out": "6"
+      },
+      {
+        "in": "1000000000 999999999",
+        "out": "1"
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+# Runs the whole stack on one host (e.g. a single EC2 instance):
+#   db (MySQL)  +  backend (Spring Boot, all 5 compilers)  +  web (React via nginx)
+# Only the web service is exposed (port 80). Values come from deploy/.env.
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      MYSQL_DATABASE: codecampus
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${DB_PASSWORD:-codecampus123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  backend:
+    build:
+      context: ../server
+    restart: always
+    environment:
+      DB_URL: jdbc:mysql://db:3306/codecampus?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-codecampus123}
+      JWT_SECRET: ${JWT_SECRET:-Q29kZUNhbXB1czIwMjZTdXBlclNlY3JldEtleUxvbmdFbm91Z2hGb3JIUzI1NkFsZ29yaXRobQ==}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@codecampus.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      DEMO_ACCOUNTS: ${DEMO_ACCOUNTS:-true}
+      # Exam-load tuning (200 students). Override any of these in deploy/.env if needed.
+      EXEC_MAX_CONCURRENT: ${EXEC_MAX_CONCURRENT:-12}
+      EXEC_QUEUE_TIMEOUT: ${EXEC_QUEUE_TIMEOUT:-60}
+      DB_POOL_SIZE: ${DB_POOL_SIZE:-50}
+      PROCTOR_SNAPSHOT_INTERVAL: ${PROCTOR_SNAPSHOT_INTERVAL:-300}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ../client
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  dbdata:

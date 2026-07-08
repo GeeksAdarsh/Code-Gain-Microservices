@@ -1,0 +1,12 @@
+package com.codecampus.repository;
+
+import com.codecampus.model.Feedback;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
+    List<Feedback> findAllByOrderByCreatedAtDesc();
+    List<Feedback> findByQuestionIdOrderByCreatedAtDesc(Long questionId);
+    List<Feedback> findByUserIdOrderByCreatedAtDesc(Long userId);
+    long countByStatus(String status);
+}

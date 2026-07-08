@@ -1,0 +1,94 @@
+version: "3.8"
+
+# ============================================================
+#  CodeCampus — Judge0 CE (Self-Hosted Code Execution Engine)
+#
+#  Usage:
+#    docker compose up -d          # start all services
+#    docker compose logs -f        # watch logs
+#    docker compose down           # stop everything
+#    docker compose down -v        # stop + remove volumes
+#
+#  Judge0 API will be available at http://localhost:2358
+#  Health check: http://localhost:2358/system_info
+# ============================================================
+
+x-judge0-env: &judge0-env
+  REDIS_URL: redis://redis:6379
+  POSTGRES_HOST: judge0-db
+  POSTGRES_PORT: 5432
+  POSTGRES_DB: judge0
+  POSTGRES_USER: judge0
+  POSTGRES_PASSWORD: judge0password
+  RAILS_MAX_THREADS: 8
+  RAILS_SERVER_PROCESSES: 2
+  ENABLE_WAIT_RESULT: "true"
+  ENABLE_BATCHED_SUBMISSIONS: "true"
+  CPU_TIME_LIMIT: 10
+  CPU_EXTRA_TIME: 2
+  WALL_TIME_LIMIT: 20
+  MEMORY_LIMIT: 262144
+  MAX_PROCESSES_AND_OR_THREADS: 60
+  ENABLE_NETWORK: "false"
+
+services:
+  # ---------- Judge0 CE Server ----------
+  judge0-server:
+    image: judge0/judge0-ce:1.13.1
+    ports:
+      - "2358:2358"
+    environment:
+      <<: *judge0-env
+    depends_on:
+      judge0-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ---------- Judge0 CE Workers ----------
+  judge0-workers:
+    image: judge0/judge0-ce:1.13.1
+    command: ["./scripts/workers"]
+    environment:
+      <<: *judge0-env
+    privileged: true
+    depends_on:
+      judge0-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ---------- PostgreSQL (Judge0 internal DB) ----------
+  judge0-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: judge0
+      POSTGRES_USER: judge0
+      POSTGRES_PASSWORD: judge0password
+    volumes:
+      - judge0-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U judge0"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  # ---------- Redis (Judge0 queue) ----------
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    volumes:
+      - judge0-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  judge0-pgdata:
+  judge0-redis:

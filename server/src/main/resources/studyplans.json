@@ -1,0 +1,516 @@
+[
+  {
+    "id": "blind75",
+    "name": "Blind 75",
+    "description": "The famous 75 LeetCode questions curated by Blind. Master these to ace any coding interview.",
+    "icon": "🔥",
+    "color": "from-orange-500 to-red-500",
+    "difficulty": "Mixed",
+    "estimatedHours": 40,
+    "questions": [
+      "Two Sum", "Best Time to Buy and Sell Stock", "Contains Duplicate", "Product of Array Except Self",
+      "Maximum Subarray", "Maximum Product Subarray", "Search in Rotated Sorted Array",
+      "3Sum", "Container With Most Water", "Move Zeroes",
+
+      "Climbing Stairs", "Coin Change", "Longest Increasing Subsequence",
+      "Longest Common Subsequence", "Word Break", "Combination Sum", "House Robber",
+      "House Robber II", "Unique Paths", "Jump Game",
+
+      "Valid Parentheses", "Merge Intervals", "Sort Colors",
+      "Longest Consecutive Sequence", "Trapping Rain Water",
+
+      "Merge Two Sorted Lists", "Merge K Sorted Lists", "Reverse Linked List", "Linked List Cycle",
+      "Remove Nth Node From End of List", "Reorder List",
+
+      "Longest Substring Without Repeating Characters", "Longest Palindromic Substring",
+      "Group Anagrams", "Valid Palindrome", "Minimum Window Substring",
+      "Longest Repeating Character Replacement",
+
+      "Binary Search", "Search Insert Position", "Find Peak Element",
+      "Koko Eating Bananas",
+
+      "Maximum Depth of Binary Tree", "Invert Binary Tree", "Binary Tree Level Order Traversal",
+      "Validate Binary Search Tree", "Lowest Common Ancestor of BST",
+      "Subtree of Another Tree", "Symmetric Tree", "Binary Tree Maximum Path Sum",
+      "Construct Binary Tree from Preorder and Inorder", "Serialize and Deserialize Binary Tree",
+      "Kth Smallest Element in BST",
+
+      "Number of Islands", "Course Schedule", "Pacific Atlantic Water Flow",
+      "Clone Graph", "Topological Sort",
+
+      "Implement Trie (Prefix Tree)", "Word Search", "Word Search II",
+
+      "Top K Frequent Elements", "Kth Largest Element in an Array",
+      "Find Median from Data Stream",
+
+      "Rotate Image", "Spiral Matrix", "Set Matrix Zeroes", "Next Permutation",
+
+      "Edit Distance", "Target Sum", "0/1 Knapsack Problem",
+
+      "N-Queens", "Subsets", "Permutations",
+
+      "Single Number", "Missing Number", "Reverse Bits", "Number of 1 Bits"
+    ]
+  },
+  {
+    "id": "top150",
+    "name": "Top Interview 150",
+    "description": "Must-do list for interview prep. Covers all essential topics — arrays, strings, DP, graphs, trees.",
+    "icon": "⭐",
+    "color": "from-amber-500 to-yellow-500",
+    "difficulty": "Mixed",
+    "estimatedHours": 80,
+    "questions": [
+      "Two Sum", "Best Time to Buy and Sell Stock", "Contains Duplicate", "Product of Array Except Self",
+      "Maximum Subarray", "Maximum Product Subarray", "Search in Rotated Sorted Array",
+      "3Sum", "Container With Most Water", "Merge Intervals", "Rotate Array",
+      "Move Zeroes", "Remove Duplicates from Sorted Array", "Plus One", "Merge Sorted Array",
+      "Sort Colors", "Longest Consecutive Sequence", "Subarray Sum Equals K",
+      "Find the Duplicate Number", "Maximum Sum Circular Subarray",
+
+      "Climbing Stairs", "Coin Change", "Longest Increasing Subsequence",
+      "Longest Common Subsequence", "Word Break", "Combination Sum", "House Robber",
+      "House Robber II", "Unique Paths", "Unique Paths II", "Jump Game", "Jump Game II",
+      "Edit Distance", "Decode Ways", "Minimum Path Sum",
+      "Partition Equal Subset Sum", "Target Sum", "Perfect Squares",
+      "0/1 Knapsack Problem", "Longest Common Substring",
+      "Minimum Falling Path Sum", "Maximal Square",
+      "Longest Palindromic Subsequence", "Minimum Deletions to Make Palindrome",
+
+      "Valid Parentheses", "Merge Two Sorted Lists", "Merge K Sorted Lists",
+      "Reverse Linked List", "Linked List Cycle", "Linked List Cycle II",
+      "Remove Nth Node From End of List", "Sort List",
+      "Intersection of Two Linked Lists", "Palindrome Linked List",
+      "Add Two Numbers (Linked List)", "Middle of the Linked List",
+      "Odd Even Linked List", "Reverse Nodes in k-Group", "Copy List with Random Pointer",
+
+      "Longest Substring Without Repeating Characters", "Longest Palindromic Substring",
+      "Group Anagrams", "Check Anagram", "Longest Common Prefix", "Reverse String",
+      "Roman to Integer", "Integer to Roman", "Palindrome Number", "Fizz Buzz", "Word Pattern",
+      "First Non-Repeating Character", "Word Search", "Valid Palindrome",
+      "Longest Repeating Character Replacement", "Find All Anagrams in a String",
+      "Minimum Window Substring", "String Compression", "Valid Anagram Check",
+
+      "Binary Search", "Search Insert Position",
+      "Find First and Last Position of Element",
+      "Pow(x, n)", "Count Primes", "Find Peak Element",
+      "Search a 2D Matrix", "Koko Eating Bananas",
+      "Capacity To Ship Packages Within D Days", "Aggressive Cows (Binary Search)",
+      "Median of Two Sorted Arrays (Simple)",
+
+      "Maximum Depth of Binary Tree", "Invert Binary Tree", "Binary Tree Level Order Traversal",
+      "Validate Binary Search Tree", "Lowest Common Ancestor of BST",
+      "Lowest Common Ancestor of Binary Tree",
+      "Subtree of Another Tree", "Symmetric Tree",
+      "Binary Tree Inorder Traversal", "Diameter of Binary Tree",
+      "Flatten Binary Tree to Linked List", "Serialize and Deserialize Binary Tree",
+      "Kth Smallest Element in BST", "Binary Tree Maximum Path Sum",
+      "Construct Binary Tree from Preorder and Inorder", "Balanced Binary Tree",
+      "Convert Sorted Array to BST", "Binary Tree Right Side View",
+
+      "Number of Islands", "Course Schedule", "Course Schedule II",
+      "Clone Graph", "Surrounded Regions",
+      "Topological Sort", "Detect Cycle in Directed Graph", "Detect Cycle in Undirected Graph",
+      "BFS of Graph", "DFS of Graph", "Dijkstra's Shortest Path",
+      "Rotting Oranges", "Flood Fill", "Word Ladder", "Number of Provinces",
+      "Pacific Atlantic Water Flow",
+
+      "Implement Trie (Prefix Tree)", "Word Search II",
+
+      "Top K Frequent Elements", "Kth Largest Element in an Array",
+      "Find Median from Data Stream", "Sliding Window Maximum",
+
+      "Min Stack", "LRU Cache", "Implement Queue using Stacks",
+      "Daily Temperatures", "Next Greater Element I", "Largest Rectangle in Histogram",
+
+      "Subsets", "Subsets II", "Permutations", "Generate Parentheses",
+      "Letter Combinations of a Phone Number", "N-Queens",
+      "Combination Sum", "Palindrome Partitioning",
+
+      "Rotate Image", "Spiral Matrix", "Set Matrix Zeroes",
+      "Valid Sudoku", "Sudoku Solver", "Next Permutation",
+      "Rotate Matrix 90 Degrees Clockwise", "Spiral Matrix Traversal",
+
+      "Trapping Rain Water", "Single Number", "Missing Number",
+      "Power of Two", "Number of 1 Bits", "Reverse Bits", "Hamming Distance",
+
+      "GCD of Two Numbers", "Fibonacci Number", "Pascal's Triangle",
+      "Kadane's Algorithm", "Fractional Knapsack Greedy",
+      "Activity Selection Problem", "Task Scheduler",
+      "Majority Element", "Majority Element II",
+
+      "Count Subarrays with Sum K", "Longest Subarray with Sum Zero",
+      "Longest Substring with K Distinct Characters",
+      "Maximum of All Subarrays of Size K"
+    ]
+  },
+  {
+    "id": "arrays101",
+    "name": "Arrays 101",
+    "description": "Master array fundamentals — traversal, insertion, deletion, searching, and sorting techniques.",
+    "icon": "📊",
+    "color": "from-blue-500 to-indigo-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 15,
+    "questions": [
+      "Two Sum", "Best Time to Buy and Sell Stock", "Contains Duplicate", "Maximum Subarray",
+      "Move Zeroes", "Remove Duplicates from Sorted Array", "Plus One", "Merge Sorted Array",
+      "Rotate Array", "Single Number", "Missing Number", "Find All Numbers Disappeared in Array",
+      "Majority Element", "Intersection of Two Arrays II", "Sort Colors",
+      "Product of Array Except Self", "Container With Most Water", "3Sum",
+      "Search in Rotated Sorted Array", "Search Insert Position", "Binary Search",
+      "Flood Fill", "Spiral Matrix", "Rotate Image", "Set Matrix Zeroes"
+    ]
+  },
+  {
+    "id": "dp_patterns",
+    "name": "Dynamic Programming Patterns",
+    "description": "Learn DP step by step — from Fibonacci to Knapsack to LCS. Understand patterns, not memorize solutions.",
+    "icon": "🧠",
+    "color": "from-purple-500 to-pink-500",
+    "difficulty": "Medium-Hard",
+    "estimatedHours": 30,
+    "questions": [
+      "Fibonacci Number", "Climbing Stairs", "House Robber", "Maximum Subarray",
+      "Best Time to Buy and Sell Stock", "Coin Change", "Unique Paths", "Minimum Path Sum",
+      "Jump Game", "Longest Increasing Subsequence", "Longest Common Subsequence",
+      "Edit Distance", "Word Break", "Decode Ways", "Target Sum",
+      "Partition Equal Subset Sum", "0/1 Knapsack Problem", "Perfect Squares",
+      "Maximum Product Subarray", "Longest Palindromic Substring",
+      "Maximal Square", "Matrix Chain Multiplication", "Kadane's Algorithm",
+      "Palindrome Partitioning"
+    ]
+  },
+  {
+    "id": "graph_theory",
+    "name": "Graph Theory Essentials",
+    "description": "BFS, DFS, Dijkstra, Topological Sort, Union-Find — everything you need for graph problems.",
+    "icon": "🌐",
+    "color": "from-cyan-500 to-teal-500",
+    "difficulty": "Medium-Hard",
+    "estimatedHours": 25,
+    "questions": [
+      "Number of Islands", "Course Schedule", "BFS of Graph", "DFS of Graph",
+      "Clone Graph", "Surrounded Regions", "Topological Sort",
+      "Detect Cycle in Directed Graph", "Dijkstra's Shortest Path", "Kruskal's MST",
+      "Word Ladder", "Flood Fill", "Rat in a Maze"
+    ]
+  },
+  {
+    "id": "tree_mastery",
+    "name": "Tree & BST Mastery",
+    "description": "From traversals to advanced tree algorithms — inorder, preorder, BFS, BST validation, LCA, and more.",
+    "icon": "🌳",
+    "color": "from-emerald-500 to-green-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 20,
+    "questions": [
+      "Maximum Depth of Binary Tree", "Invert Binary Tree", "Symmetric Tree",
+      "Binary Tree Level Order Traversal", "Binary Tree Inorder Traversal",
+      "Validate Binary Search Tree", "Lowest Common Ancestor of BST",
+      "Subtree of Another Tree", "Diameter of Binary Tree",
+      "Flatten Binary Tree to Linked List", "Serialize and Deserialize Binary Tree"
+    ]
+  },
+  {
+    "id": "string_problems",
+    "name": "String Problems Collection",
+    "description": "Sliding window, two pointers, hash maps, pattern matching — all string techniques in one place.",
+    "icon": "📝",
+    "color": "from-rose-500 to-pink-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 15,
+    "questions": [
+      "Reverse String", "Longest Substring Without Repeating Characters",
+      "Longest Palindromic Substring", "Group Anagrams", "Check Anagram",
+      "Longest Common Prefix", "Valid Parentheses", "Generate Parentheses",
+      "Roman to Integer", "Word Pattern", "First Non-Repeating Character",
+      "Word Search", "Word Break", "Minimum Window Substring",
+      "Palindrome Number", "Palindrome Partitioning"
+    ]
+  },
+  {
+    "id": "backtracking",
+    "name": "Backtracking Bootcamp",
+    "description": "Learn recursive backtracking — permutations, combinations, subsets, N-Queens, Sudoku, and maze problems.",
+    "icon": "🔙",
+    "color": "from-violet-500 to-purple-500",
+    "difficulty": "Medium-Hard",
+    "estimatedHours": 20,
+    "questions": [
+      "Subsets", "Permutations", "Combination Sum", "Generate Parentheses",
+      "Letter Combinations of a Phone Number", "Palindrome Partitioning",
+      "Word Search", "N-Queens", "Sudoku Solver", "Rat in a Maze"
+    ]
+  },
+  {
+    "id": "greedy_algo",
+    "name": "Greedy Algorithms",
+    "description": "Master greedy problem-solving — activity selection, fractional knapsack, interval scheduling.",
+    "icon": "💰",
+    "color": "from-yellow-500 to-amber-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 10,
+    "questions": [
+      "Best Time to Buy and Sell Stock", "Jump Game", "Activity Selection Problem",
+      "Fractional Knapsack", "Container With Most Water", "Task Scheduler",
+      "Merge Intervals"
+    ]
+  },
+  {
+    "id": "stack_queue",
+    "name": "Stack & Queue Essentials",
+    "description": "From basic stack/queue operations to monotonic stacks and sliding window problems.",
+    "icon": "📚",
+    "color": "from-sky-500 to-blue-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 12,
+    "questions": [
+      "Valid Parentheses", "Min Stack", "Implement Queue using Stacks",
+      "Implement Stack using Queues", "Daily Temperatures",
+      "Sliding Window Maximum", "Largest Rectangle in Histogram",
+      "Trapping Rain Water"
+    ]
+  },
+  {
+    "id": "binary_search_pro",
+    "name": "Binary Search Pro",
+    "description": "Beyond basic search — rotated arrays, finding boundaries, search space reduction patterns.",
+    "icon": "🔍",
+    "color": "from-indigo-500 to-blue-500",
+    "difficulty": "Easy-Medium",
+    "estimatedHours": 10,
+    "questions": [
+      "Binary Search", "Search Insert Position",
+      "Find First and Last Position of Element",
+      "Search in Rotated Sorted Array", "Median of Two Sorted Arrays",
+      "Pow(x, n)", "Count Primes", "Kth Largest Element in an Array"
+    ]
+  },
+  {
+    "id": "bit_manipulation",
+    "name": "Bit Manipulation Tricks",
+    "description": "XOR magic, counting bits, power of two — essential bit manipulation patterns for interviews.",
+    "icon": "⚡",
+    "color": "from-lime-500 to-green-500",
+    "difficulty": "Easy",
+    "estimatedHours": 5,
+    "questions": [
+      "Single Number", "Number of 1 Bits", "Reverse Bits",
+      "Power of Two", "Missing Number", "Hamming Distance"
+    ]
+  },
+  {
+    "id": "striver-a2z",
+    "name": "Striver A2Z DSA Sheet",
+    "description": "The most popular DSA sheet by Striver with 450+ problems organized topic-wise. Master every concept from basics to advanced.",
+    "icon": "🚀",
+    "color": "from-violet-500 to-purple-600",
+    "difficulty": "Easy-Hard",
+    "estimatedHours": 200,
+    "questions": [
+      "Count Digits", "Reverse a Number", "Check Palindrome Number", "Check Armstrong Number",
+      "Print All Divisors", "Check Prime Number", "GCD of Two Numbers", "LCM of Two Numbers",
+      "Factorial of a Number", "Sum of First N Natural Numbers", "Power of a Number",
+      "Sum of Digits", "Fibonacci Number", "Print Fibonacci Series", "Count Set Bits",
+      "Check Power of Two", "Power of Two", "Power of Three",
+
+      "Selection Sort", "Bubble Sort", "Insertion Sort", "Merge Sort", "Quick Sort",
+
+      "Find Maximum Element", "Find Minimum Element", "Second Largest Element",
+      "Check if Array is Sorted", "Remove Duplicates from Sorted Array", "Remove Duplicates from Array",
+      "Left Rotate Array by One", "Left Rotate Array by K Places", "Reverse an Array",
+      "Move Zeroes", "Union of Two Sorted Arrays", "Missing Number",
+      "Maximum Consecutive Ones", "Single Number", "Longest Subarray with Sum K",
+
+      "Two Sum", "Sort Colors", "Majority Element", "Majority Element II",
+      "Maximum Subarray", "Kadane's Algorithm", "Stock Buy and Sell Multiple Transactions",
+      "Best Time to Buy and Sell Stock", "Rearrange by Sign",
+      "Next Permutation", "Leaders in an Array", "Count Frequency of Elements",
+      "Frequency of Most Frequent Element", "Set Matrix Zeroes",
+      "Rotate Image", "Spiral Matrix", "Pascal's Triangle",
+
+      "3Sum", "4Sum", "Subarray Sum Equals K", "Merge Intervals",
+      "Find the Duplicate Number", "Count Inversions",
+      "Longest Consecutive Sequence", "Trapping Rain Water",
+
+      "Binary Search", "Search Insert Position", "Find First and Last Position of Element",
+      "Sqrt(x)", "Find Peak Element", "Search in Rotated Sorted Array",
+      "Find Minimum in Rotated Sorted Array", "Koko Eating Bananas",
+      "Capacity To Ship Packages Within D Days", "Aggressive Cows",
+      "Book Allocation Problem", "Painter's Partition Problem",
+      "Search a 2D Matrix", "Search a 2D Matrix II", "Median of Two Sorted Arrays",
+
+      "Reverse String", "Check Palindrome String", "Valid Palindrome",
+      "Check Anagram", "Count Vowels in String",
+      "Longest Substring Without Repeating Characters",
+      "Longest Palindromic Substring", "Longest Common Prefix",
+      "Roman to Integer", "Integer to Roman",
+      "String to Integer (atoi)", "Implement strStr",
+      "Longest Repeating Character Replacement",
+      "Group Anagrams", "Minimum Window Substring",
+
+      "Reverse Linked List", "Middle of the Linked List",
+      "Merge Two Sorted Lists", "Remove Nth Node From End of List",
+      "Delete Node in a Linked List", "Linked List Cycle", "Linked List Cycle II",
+      "Intersection of Two Linked Lists", "Palindrome Linked List",
+      "Add Two Numbers (Linked List)", "Odd Even Linked List",
+      "Sort List", "Reverse Nodes in k-Group",
+      "Flatten a Multilevel Doubly Linked List", "Copy List with Random Pointer",
+      "Rotate List", "Design Linked List", "LRU Cache",
+
+      "Subsets", "Subsets II", "Permutations", "Permutations II",
+      "Combination Sum", "Combination Sum II", "Combination Sum III",
+      "Palindrome Partitioning", "N-Queens", "Sudoku Solver",
+      "Word Search", "Generate Parentheses", "Restore IP Addresses",
+      "Tower of Hanoi",
+
+      "Number of 1 Bits", "Reverse Bits", "Power of Two",
+      "Single Number", "Single Number II", "Single Number III",
+      "Hamming Distance", "Sum of Two Integers", "Counting Bits",
+      "XOR Queries of a Subarray", "Bitwise AND of Numbers Range",
+
+      "Min Stack", "Valid Parentheses", "Implement Queue using Stacks",
+      "Implement Stack using Queues", "Daily Temperatures",
+      "Next Greater Element I", "Next Greater Element II",
+      "Largest Rectangle in Histogram", "Sliding Window Maximum",
+      "Online Stock Span", "Asteroid Collision",
+      "Remove K Digits", "Evaluate Reverse Polish Notation",
+      "Task Scheduler",
+
+      "Maximum Depth of Binary Tree", "Balanced Binary Tree",
+      "Diameter of Binary Tree", "Same Tree", "Symmetric Tree",
+      "Binary Tree Inorder Traversal", "Binary Tree Preorder Traversal",
+      "Binary Tree Postorder Traversal", "Binary Tree Level Order Traversal",
+      "Binary Tree Zigzag Level Order Traversal", "Binary Tree Right Side View",
+      "Invert Binary Tree", "Path Sum", "Path Sum II",
+      "Lowest Common Ancestor of Binary Tree",
+      "Flatten Binary Tree to Linked List", "Binary Tree Maximum Path Sum",
+      "Construct Binary Tree from Preorder and Inorder",
+      "Construct Binary Tree from Inorder and Postorder",
+      "Serialize and Deserialize Binary Tree",
+
+      "Validate Binary Search Tree", "Lowest Common Ancestor of BST",
+      "Kth Smallest Element in BST", "Convert Sorted Array to BST",
+      "Binary Search Tree Iterator", "Delete Node in a BST",
+      "Insert into a BST",
+
+      "Climbing Stairs", "Fibonacci Number", "House Robber", "House Robber II",
+      "Coin Change", "Coin Change II", "Unique Paths", "Unique Paths II",
+      "Minimum Path Sum", "Longest Increasing Subsequence",
+      "Longest Common Subsequence", "Edit Distance",
+      "0/1 Knapsack Problem", "Unbounded Knapsack", "Target Sum",
+      "Partition Equal Subset Sum", "Rod Cutting Problem", "Subset Sum Problem",
+      "Longest Palindromic Subsequence", "Matrix Chain Multiplication",
+      "Word Break", "Decode Ways", "Maximal Square",
+      "Best Time to Buy and Sell Stock II", "Best Time to Buy and Sell Stock III",
+      "Best Time to Buy and Sell Stock IV", "Best Time to Buy and Sell Stock with Cooldown",
+      "Burst Balloons", "Minimum Insertion Steps to Make a String Palindrome",
+      "Triangle", "Dungeon Game", "Egg Drop Problem",
+
+      "Number of Islands", "BFS of Graph", "DFS of Graph",
+      "Detect Cycle in Directed Graph", "Detect Cycle in Undirected Graph",
+      "Topological Sort", "Course Schedule", "Course Schedule II",
+      "Dijkstra's Shortest Path", "Bellman-Ford Algorithm",
+      "Floyd Warshall Algorithm", "Kruskal's MST", "Prim's MST",
+      "Number of Provinces", "Rotting Oranges", "Flood Fill",
+      "Surrounded Regions", "Word Ladder",
+      "Pacific Atlantic Water Flow", "Cheapest Flights Within K Stops",
+      "Network Delay Time", "Is Graph Bipartite?",
+      "Shortest Path in Binary Matrix", "Alien Dictionary",
+      "Critical Connections in a Network",
+
+      "Implement Trie (Prefix Tree)", "Design Add and Search Words",
+      "Word Search II", "Maximum XOR of Two Numbers",
+      "Longest Word in Dictionary",
+
+      "Activity Selection Problem", "Fractional Knapsack",
+      "Job Sequencing Problem", "Minimum Platforms",
+      "Assign Cookies", "Lemonade Change",
+      "Minimum Number of Arrows to Burst Balloons",
+      "Candy", "Partition Labels",
+
+      "Kth Largest Element in an Array", "Top K Frequent Elements",
+      "Find Median from Data Stream", "Merge K Sorted Lists",
+      "K Closest Points to Origin", "Reorganize String",
+
+      "Matrix Transpose", "Count Inversions",
+      "Sieve of Eratosthenes", "Count Primes",
+      "Fast Exponentiation", "Modular Arithmetic",
+
+      "Rearrange Array Elements by Sign", "Pascal's Triangle Row",
+      "Floor in Sorted Array", "Ceil in Sorted Array",
+      "Count Occurrences in Sorted Array", "Single Element in Sorted Array",
+      "Remove Outermost Parentheses", "Largest Odd Number in String",
+      "Is Subsequence", "Print 1 to N", "Print N to 1",
+      "Minimum Cost Climbing Stairs", "Tribonacci Number",
+      "Count Ways to Climb Stairs", "Maximum Sum of Non-Adjacent Elements",
+      "Frog Jump", "Minimum Falling Path Sum",
+      "Rotate String", "Pair with Given Sum",
+      "N Meetings in One Room", "Alternating Characters",
+      "String Compression", "Next Smaller Element",
+      "Smallest Divisor Given Threshold", "Maximum of All Subarrays of Size K",
+      "Longest Common Substring", "Best Time to Buy and Sell Stock with Transaction Fee",
+      "Sum of Array Elements", "Product of Array Elements",
+      "Sort Array of 0s 1s and 2s", "Reverse Words",
+      "Majority Element N by 3", "XOR of All Elements",
+      "Equilibrium Index", "Prefix Sum Array",
+      "Check if Array is Sorted and Rotated",
+      "Merge Two Sorted Arrays into One",
+      "Swap Two Numbers", "Length of String",
+      "Binary to Decimal", "Decimal to Binary",
+      "Check Perfect Number", "Check Neon Number",
+      "Count Even and Odd Numbers", "Difference Between Max and Min",
+      "Maximum Product of Two Elements", "Smallest and Largest Digit",
+      "Running Maximum Array", "Average of Array Elements",
+      "Count Pairs with Given Difference",
+
+      "Check Palindrome Number", "Check Perfect Square",
+      "Sum of Cubes of First N Numbers", "Check Abundant Number",
+      "GCD of Two Numbers Using Euclidean Algorithm",
+      "Largest and Smallest in Array", "Move All Zeros to End",
+      "Right Rotate Array by K", "Separate Positive and Negative",
+      "Intersection of Two Sorted Arrays", "Maximum Subarray Sum (Kadane)",
+      "Sum of Array (Recursion)", "Convert to Uppercase", "Convert to Lowercase",
+      "Maximum Nesting Depth of Parentheses", "Count Words in String",
+      "Remove Vowels from String", "Character Frequency", "First Unique Character",
+      "Nth Root of a Number", "Minimum in Rotated Sorted Array",
+      "Number of Times Array is Rotated", "Power Using Recursion",
+      "Count Good Numbers", "Count Distinct Permutations",
+      "Unique Paths with Obstacles", "Maximum Path Sum in Grid",
+      "Minimum Coins to Make Amount", "Length of LIS", "Length of LCS",
+      "0-1 Knapsack", "Next Greater Element", "Balanced Parentheses",
+      "Stock Span Problem", "Minimum Platforms Required",
+      "Fractional Knapsack Greedy", "Job Sequencing Problem",
+      "XOR of Two Numbers", "AND of Two Numbers", "OR of Two Numbers",
+      "Toggle Kth Bit", "Check Kth Bit",
+      "Count Negative Numbers", "Longest Equal Subarray",
+      "Count 0s 1s and 2s", "Wave Sort Array",
+      "Check if Array is Sorted Descending",
+      "Kth Smallest Element", "Kth Largest Element (Simple)",
+      "Absolute Values of Array", "Square Each Element",
+      "Container with Most Water (Simple)", "Trapping Rain Water (Array)",
+      "Check Even or Odd", "Absolute Value",
+      "Celsius to Fahrenheit", "Area of Circle", "Check Leap Year",
+      "Sum of Even Numbers in Array", "Sum of Odd Numbers in Array",
+      "Count Zeros in Array", "Check Fibonacci Number",
+      "Largest of Three Numbers", "Smallest of Three Numbers",
+      "Multiply Two Numbers", "Sum of Squares of First N Numbers",
+      "Number of Bits",
+
+      "Longest Substring with K Distinct Characters", "Subarray with Given Sum",
+      "Smallest Window Containing All Characters", "Count Subarrays with Sum K",
+      "Longest Subarray with Sum Zero", "Power Function (x^n)",
+      "Sort Array by Parity (Custom)", "Maximum Sum Circular Subarray",
+      "Count Subsequences with Given Sum", "Reverse String Word by Word",
+      "Implement atoi", "Majority Element (Moore Voting)",
+      "Aggressive Cows (Binary Search)", "Rat in a Maze (Count Paths)",
+      "Count Repeating Digits", "Rotate Matrix 90 Degrees Clockwise",
+      "Search in 2D Sorted Matrix", "Valid Anagram Check",
+      "Maximum Points on a Line", "Two Sum in Sorted Array",
+      "Longest Palindrome from Characters", "Spiral Matrix Traversal",
+      "Minimum Deletions to Make Palindrome", "Snake Pattern Matrix",
+      "Median of Two Sorted Arrays (Simple)"
+    ]
+  }
+]

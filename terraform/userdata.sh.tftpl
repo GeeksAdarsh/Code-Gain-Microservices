@@ -1,0 +1,44 @@
+#!/bin/bash
+set -euxo pipefail
+
+# 2GB swap so the in-instance Maven + Vite builds don't run out of memory
+if [ ! -f /swapfile ]; then
+  dd if=/dev/zero of=/swapfile bs=1M count=2048
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
+
+dnf update -y
+dnf install -y docker git
+systemctl enable --now docker
+
+# Docker Compose v2 plugin
+mkdir -p /usr/local/lib/docker/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-x86_64 \
+  -o /usr/local/lib/docker/cli-plugins/docker-compose
+chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+# Fetch and build the app.
+# If a GitHub token is provided (private repo), clone with it then scrub the
+# token out of the stored remote URL so it isn't left on disk.
+rm -rf /opt/app
+REPO_URL="${repo_url}"
+GH_TOKEN="${github_token}"
+if [ -n "$${GH_TOKEN}" ]; then
+  git clone --branch ${repo_branch} "https://x-access-token:$${GH_TOKEN}@$${REPO_URL#https://}" /opt/app
+  git -C /opt/app remote set-url origin "$${REPO_URL}"
+else
+  git clone --branch ${repo_branch} "$${REPO_URL}" /opt/app
+fi
+cd /opt/app/deploy
+
+cat > .env <<EOF
+DB_PASSWORD=${db_password}
+JWT_SECRET=${jwt_secret}
+FRONTEND_URL=${frontend_url}
+EOF
+
+# Build + start in the background (first build takes several minutes)
+docker compose up -d --build
